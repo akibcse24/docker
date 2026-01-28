@@ -243,8 +243,8 @@ RUN systemctl enable ssh.service postgresql.service
 # Set systemd target
 RUN systemctl set-default multi-user.target
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries:3 \
+# ✅ FIXED: Proper HEALTHCHECK syntax (--retries=3)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD systemctl is-system-running || exit 1
 
 # Volumes (cgroup required for systemd)
